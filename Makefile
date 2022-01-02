@@ -6,12 +6,12 @@
 #    By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:03:43 by ybestrio          #+#    #+#              #
-#    Updated: 2021/12/27 16:00:33 by ybestrio         ###   ########.fr        #
+#    Updated: 2022/01/01 12:08:40 by yasinbest        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME1 = So_long
 
-SRCS1 =  utils.c
+SRCS1 =  Hello.c
 
 OBJS1 = $(SRCS1:.c=.o)
 
