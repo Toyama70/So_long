@@ -6,7 +6,7 @@
 /*   By: yasinbestrioui <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 14:56:06 by yasinbest         #+#    #+#             */
-/*   Updated: 2022/01/02 12:26:38 by yasinbest        ###   ########.fr       */
+/*   Updated: 2022/01/02 16:35:27 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <mlx.h>
@@ -15,47 +15,77 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct s_data {
+
+typedef	struct s_hero {
 	void	*img;
 	char	*addr;
 	int		bpp;
 	int		l_l;
 	int		endian;
-}			t_data;
+	int		w;
+	int		h;
+}			t_hero;
 
-void	ft_matrix
-{
+typedef struct s_data {
 	void	*mlx;
 	void	*win;
+//	void	*her;
 
-	mlx = mlx_init();
-	win = mlx_mew_window(mlx, 1280, 720, "So_long");
-	
+	char	*addr;
+	int		bpp;
+	int		l_l;
+	int		endian;
+	t_hero	her;
+}			t_data;
+
+/*
+int		deal_key(int key, void *param)
+{
+
+	write(1, "x", 1);
+
+	return (0);
+}*/
+void	ft_img(t_data *img, t_hero *hero, char *file)
+{
+
+	hero->img = mlx_xpm_file_to_image(img->mlx, file, &hero->w, &hero->h);
+
+	hero->addr = mlx_get_data_addr(hero->img, &hero->bpp, &hero->l_l, &hero->endian);
+
 
 }
 
-/*
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
 
-	dst = data->addr + (y * data->l_l + x * (data->bpp / 8));
-	*(unsigned int*)dst = color;
-}*/
+
+void	ft_matrix(t_data *img)
+{
+	t_hero hero;
+	img->mlx = mlx_init();
+	img->win = mlx_new_window(img->mlx, 1280, 720, "So_long");
+//	mlx_pixel_put(img->mlx, img->win, 5, 5, 0x00FF0000);
+
+		
+	//mlx_key_hook(img->win, deal_key, (void *)0); 
+
+	ft_img(img, &hero, "hero.xpm");
+	img->her = hero;	
+	mlx_put_image_to_window(img->mlx, img->win, img->her.img, 50, 50)	;
+	
+	
+	
+	
+	
+	
+	mlx_loop(img->mlx);
+
+}
 
 
 int	main(void)
 {
-	void	*mlx;
-	void	*mlx_win;
-	t_data	img;
+	t_data img;
 
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1280, 720 , "Hello world!");
-	img.img = mlx_new_image(mlx, 1280, 720);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.l_l,
-								&img.endian);
-	my_mlx_pixel_put(&img, 10, 5, 0x00FF0000);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	ft_matrix(&img);
+	mlx_loop(img.mlx);
 }
