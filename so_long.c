@@ -6,7 +6,7 @@
 /*   By: yasinbestrioui <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 14:56:06 by yasinbest         #+#    #+#             */
-/*   Updated: 2022/01/02 16:35:27 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/03 12:59:17 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include <mlx.h>
@@ -88,4 +88,5 @@ int	main(void)
 
 	ft_matrix(&img);
 	mlx_loop(img.mlx);
+	system("leaks a.out");
 }
