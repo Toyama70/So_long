@@ -6,37 +6,15 @@
 /*   By: yasinbestrioui <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 14:56:06 by yasinbest         #+#    #+#             */
-/*   Updated: 2022/01/03 12:59:17 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/05 16:43:32 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "so_long.h"
 #include <mlx.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-
-typedef	struct s_hero {
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		l_l;
-	int		endian;
-	int		w;
-	int		h;
-}			t_hero;
-
-typedef struct s_data {
-	void	*mlx;
-	void	*win;
-//	void	*her;
-
-	char	*addr;
-	int		bpp;
-	int		l_l;
-	int		endian;
-	t_hero	her;
-}			t_data;
 
 /*
 int		deal_key(int key, void *param)
@@ -46,7 +24,7 @@ int		deal_key(int key, void *param)
 
 	return (0);
 }*/
-void	ft_img(t_data *img, t_hero *hero, char *file)
+void	ft_fillhero(t_data *img, t_hero *hero, char *file)
 {
 
 	hero->img = mlx_xpm_file_to_image(img->mlx, file, &hero->w, &hero->h);
@@ -56,11 +34,20 @@ void	ft_img(t_data *img, t_hero *hero, char *file)
 
 }
 
+void	ft_fillback(t_data *img, t_txtr *txtr, char *file)
+{
 
+	txtr->img = mlx_xpm_file_to_image(img->mlx, file, &txtr->w, &txtr->h);
+
+	txtr->addr = mlx_get_data_addr(txtr->img, &txtr->bpp, &txtr->l_l, &txtr->endian);
+
+
+}
 
 void	ft_matrix(t_data *img)
 {
 	t_hero hero;
+	t_txtr txtr;
 	img->mlx = mlx_init();
 	img->win = mlx_new_window(img->mlx, 1280, 720, "So_long");
 //	mlx_pixel_put(img->mlx, img->win, 5, 5, 0x00FF0000);
@@ -68,25 +55,23 @@ void	ft_matrix(t_data *img)
 		
 	//mlx_key_hook(img->win, deal_key, (void *)0); 
 
-	ft_img(img, &hero, "hero.xpm");
-	img->her = hero;	
-	mlx_put_image_to_window(img->mlx, img->win, img->her.img, 50, 50)	;
-	
-	
-	
-	
-	
-	
-	mlx_loop(img->mlx);
+	ft_fillhero(img, &hero, "hero.xpm");
+	ft_fillback(img, &txtr, "ground.xpm");
+	img->her = hero;
+	img->txtr = txtr;
+//	ft_output()//output image	
 
-}
+int i = -1;
+	while(++i < 12)
+		mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, i * 64, 0);
+	
+	
+	mlx_put_image_to_window(img->mlx, img->win, img->her.img, 0, 0)	;
+	
+	
+	
+	
+	
+//	mlx_loop(img->mlx);
 
-
-int	main(void)
-{
-	t_data img;
-
-	ft_matrix(&img);
-	mlx_loop(img.mlx);
-	system("leaks a.out");
 }

@@ -6,25 +6,18 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:46:19 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/04 17:23:03 by yasinbest        ###   ########.fr       */
+/*   Updated: 2022/01/05 15:29:13 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "so_long.h" 
-
-typedef struct s_mapsize {
-	int	length;
-	int	height;
-}	t_mapsize;
-
-
+#include "so_long.h"
 
 void free_tab(char **tab)
 {
 	size_t i;
 
-	i = -1;
-	while (++i < 6)
-		free(tab[i]);
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
 	free(tab);
 }
 
@@ -44,8 +37,8 @@ int	ft_readmap(t_mapsize *mapsize)
 		line = get_next_line(fd);
 		if (line != 0)
 		{
-			free(line);
 			mapsize->length = strlen(line) - 1;
+			free(line);
 			counter++;
 		}
 	}
@@ -60,17 +53,14 @@ char **ft_parsemap(char *line) //will need argc argv
 	char	**tab;
 	t_mapsize map;
 	int i = 0;
-	
-	map.height = ft_readmap(&map);
 
-	tab = calloc(500, sizeof(char)); // THIS WAS THE CAUSE OF THE PROBLEM, I NEED TO CHECK WHY
+	map.height = ft_readmap(&map);
+	tab = calloc(map.height, sizeof(char *));
 	while (i < map.height)
 	{
 		tab[i] = calloc(map.length +1, 1);
 		i++;
-
 	}
-
 	i = 0;
 	fd = open("testmap.ber", O_RDWR);
 //	line = calloc(map.length + 1, 1);
@@ -82,9 +72,7 @@ char **ft_parsemap(char *line) //will need argc argv
 	{
 		k = 0;
 		line = get_next_line(fd);
-		printf("line : %s\n", line);
-		printf("i = %d\n", i);
-		
+
 		while (line[k] != 0 && line[k] != '\n')
 		{
 			tab[i][k] = line[k];
@@ -93,28 +81,32 @@ char **ft_parsemap(char *line) //will need argc argv
 		free(line);
 		i++;
 	}
-
-		printf("tab[0] : %s\n", tab[0]);
-		printf("tab[1] : %s\n", tab[1]);
-		printf("tab[2] : %s\n", tab[2]);
-		printf("tab[3] : %s\n", tab[3]);
-		printf("tab[4] : %s\n", tab[4]);
-	/*printf("ok\n");
-	free(tab[0]);
-	printf("ok\n");
-	free(tab[1]);
-	printf("ok\n");
-	free(tab[2]);
-	printf("ok\n");
-	free(tab[3]);
-	printf("ok\n");
-	free(tab[4]);
-	printf("ok\n");*/
-//	free(tab); //FIRST LEAK IS THIS ONE
-//	free(tab[5]);
-//	system("leaks a.out");
-
 	return (tab);
+}
+
+void	ft_setmap(char **tab)
+{
+//handles  trees walls amd textures;
+	t_mapsize map;	
+	map.height = 0;
+	map.length = 0;
+
+	while (tab[map.height] != 0)
+	{
+		printf("i = %d\n", map.height);
+		while (tab[map.height][map.length] != 0)
+		{
+			printf("k = %d\n", map.length);
+			map.length++	;
+		}
+		map.height++;
+	}
+
+
+
+
+
+
 }
 
 int main(int argc, char *argv[])
@@ -122,18 +114,27 @@ int main(int argc, char *argv[])
 	char *line;
 	char **tab;
 	tab = ft_parsemap(line);
-//	tab[0] = "hello";
+	ft_setmap(tab);
+	t_data img;
 
-	printf("result[0] = %s\n", tab[0]);
-	printf("result[1] = %s\n", tab[1]);
-	printf("result[2] = %s\n", tab[2]);
-	printf("result[3] = %s\n", tab[3]);
-	printf("result[4] = %s\n", tab[4]);
-/*	free(tab[0]);
-	free(tab[1]);
-	free(tab[2]);
-	free(tab[3]);
-	free(tab[4]);
-*/	free_tab(tab);
+	ft_matrix(&img);
+
+
+
+
+
+	mlx_loop(img.mlx);
+
+
+
+
+
+
+
+
+
+
+	free_tab(tab);//Ce free peut etre transpose ailleurs
+
 	system("leaks a.out");
 }
