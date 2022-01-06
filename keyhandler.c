@@ -6,15 +6,13 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:13:00 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/06 17:35:20 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/06 21:49:14 by yasinbest        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
 int		deal_key(int key, t_data *img)
 {
-
-	(void)(img);
 
 	if (key == 0)
 		move_left(img);
@@ -32,8 +30,10 @@ int		deal_key(int key, t_data *img)
 
 void	move_up(t_data *img)
 {
-	mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, img->PosX * 64, img->PosY * 64);
-	
+	if(ft_checkPos(1, img) == 1)
+		return ;
+
+	mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, img->PosX * 64, img->PosY * 64);	
 	img->PosY--;
 	mlx_put_image_to_window(img->mlx, img->win, img->her.img, img->PosX * 64, img->PosY * 64);
 
@@ -42,6 +42,10 @@ void	move_up(t_data *img)
 	
 void	move_down(t_data *img)
 {
+	
+	if(ft_checkPos(3, img) == 1)
+		return ;
+
 	mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, img->PosX * 64, img->PosY * 64);
 	
 	img->PosY++;
@@ -52,6 +56,10 @@ void	move_down(t_data *img)
 
 void	move_left(t_data *img)
 {
+	
+	if(ft_checkPos(2, img) == 1)
+		return ;
+
 	mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, img->PosX * 64, img->PosY * 64);
 	
 	img->PosX--;
@@ -62,6 +70,10 @@ void	move_left(t_data *img)
 
 void	move_right(t_data *img)
 {
+	
+	if(ft_checkPos(4, img) == 1)
+		return ;
+
 	mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, img->PosX * 64, img->PosY * 64);
 	
 	img->PosX++;
