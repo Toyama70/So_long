@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:01:33 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/06 16:37:23 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/06 21:51:44 by yasinbest        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -91,12 +91,14 @@ typedef struct s_data {
 	t_rock	rock;
 	t_door	door;
 	t_coll	coll;
+	char	**points;
 	char	*addr;
 	int		bpp;
 	int		l_l;
 	int		endian;
 	int		PosX;
 	int		PosY;
+	int		moveCount;
 }			t_data;
 
 
@@ -120,6 +122,16 @@ void    move_left(t_data *img);
 void    move_right(t_data *img);
 void    move_down(t_data *img);
 
+
+
+/* Check possible moves */
+
+
+int		checkUp(t_data *img);
+int		ft_checkPos(int direction, t_data *img);
+int		checkDown(t_data *img);
+int		checkLeft(t_data *img);
+int		checkRight(t_data *img);
 
 /* Parsing map functions */
 
