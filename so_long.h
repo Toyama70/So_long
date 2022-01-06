@@ -6,7 +6,7 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:01:33 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/06 14:56:45 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:37:23 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -111,6 +111,22 @@ void	ft_printmap(char **tab);
 void	ft_img(t_data *img, t_hero *hero, char *file);
 void	ft_matrix(t_data *img, t_mapsize map, char **tab);
 void	*ft_calloc(size_t elementCount, size_t elementSize);
+
+/* Movement and key handling */
+
+int     deal_key(int key, t_data *img);
+void    move_up(t_data *img);
+void    move_left(t_data *img);
+void    move_right(t_data *img);
+void    move_down(t_data *img);
+
+
+/* Parsing map functions */
+
+t_mapsize	ft_setmap(char **tab);
+char **ft_parsemap(char *line); //will need argc argv
+int	ft_readmap(t_mapsize *mapsize);
+
 
 
 /* Read images and fill the data structure with rendering infos */

@@ -6,7 +6,7 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 11:40:55 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/06 14:55:48 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/06 16:23:36 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -73,7 +73,14 @@ void	render_hero(t_data *img, t_mapsize M, char **tab)
 		while (k < M.L)
 		{
 			if(tab[i][k] == 'P')
+			{
 				mlx_put_image_to_window(img->mlx, img->win, img->her.img, 64 * k, 64 * i);
+			img->PosX = k;
+			img->PosY = i;
+			printf("posX du heros %d\n", img->PosX );
+			printf("posY du heros %d\n", img->PosY );
+
+			}
 			k++;
 		}
 		i++;

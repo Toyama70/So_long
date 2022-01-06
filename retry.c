@@ -6,7 +6,7 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:46:19 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/06 14:36:44 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/06 15:12:23 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -100,23 +100,4 @@ t_mapsize	ft_setmap(char **tab)
 		map.H++;
 	}
 return (map);
-}
-
-int main(int argc, char *argv[])
-{
-	char *line;
-	char **tab;
-	t_mapsize map;
-	t_data img;
-	tab = ft_parsemap(line);
-	map = ft_setmap(tab);
-	printf("h  = %d and  l=%d \n", map.H, map.L);
-	ft_matrix(&img, map, tab);
-
-	mlx_loop(img.mlx);
-
-
-	free_tab(tab);//Ce free peut etre transpose ailleurs
-
-//	system("leaks a.out");
 }
