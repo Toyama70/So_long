@@ -6,7 +6,11 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:13:00 by ybestrio          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/01/07 17:57:35 by yasinbest        ###   ########.fr       */
+=======
+/*   Updated: 2022/01/06 21:49:14 by yasinbest        ###   ########.fr       */
+>>>>>>> beabcb6408bff84074540da329dae104d85250d7
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -33,6 +37,7 @@ void	move_up(t_data *img)
 	if(ft_checkPos(1, img) == 1)
 		return ;
 
+<<<<<<< HEAD
 	mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, img->PosX * 64, img->PosY * 64);
 
 	if (img->points[img->PosY][img->PosX] == 'E')
@@ -41,6 +46,9 @@ void	move_up(t_data *img)
 	if (img->points[img->PosY][img->PosX] == 'C')
 		ft_collecting(img);
 
+=======
+	mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, img->PosX * 64, img->PosY * 64);	
+>>>>>>> beabcb6408bff84074540da329dae104d85250d7
 	img->PosY--;
 	mlx_put_image_to_window(img->mlx, img->win, img->her.img, img->PosX * 64, img->PosY * 64);
 

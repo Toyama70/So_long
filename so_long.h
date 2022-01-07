@@ -6,7 +6,11 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:01:33 by ybestrio          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/01/07 17:43:27 by yasinbest        ###   ########.fr       */
+=======
+/*   Updated: 2022/01/06 21:51:44 by yasinbest        ###   ########.fr       */
+>>>>>>> beabcb6408bff84074540da329dae104d85250d7
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -99,7 +103,10 @@ typedef struct s_data {
 	int		PosX;
 	int		PosY;
 	int		moveCount;
+<<<<<<< HEAD
 	int		remain;
+=======
+>>>>>>> beabcb6408bff84074540da329dae104d85250d7
 }			t_data;
 
 
