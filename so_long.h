@@ -6,7 +6,7 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:01:33 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/06 21:51:44 by yasinbest        ###   ########.fr       */
+/*   Updated: 2022/01/07 17:43:27 by yasinbest        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -99,6 +99,7 @@ typedef struct s_data {
 	int		PosX;
 	int		PosY;
 	int		moveCount;
+	int		remain;
 }			t_data;
 
 
@@ -108,11 +109,17 @@ typedef struct s_mapsize {
 }	t_mapsize;
 
 int	ft_readmap(t_mapsize *mapsize);
-char **ft_parsemap(char *line);
+char **ft_parsemap(char *line, t_data *img);
 void	ft_printmap(char **tab);
 void	ft_img(t_data *img, t_hero *hero, char *file);
 void	ft_matrix(t_data *img, t_mapsize map, char **tab);
 void	*ft_calloc(size_t elementCount, size_t elementSize);
+
+/* Checking winning conditions */
+
+void	ft_is_exit(t_data *img);
+void	ft_collecting(t_data *img);
+
 
 /* Movement and key handling */
 
@@ -136,7 +143,6 @@ int		checkRight(t_data *img);
 /* Parsing map functions */
 
 t_mapsize	ft_setmap(char **tab);
-char **ft_parsemap(char *line); //will need argc argv
 int	ft_readmap(t_mapsize *mapsize);
 
 

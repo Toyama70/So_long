@@ -6,7 +6,7 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:04:15 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/06 21:53:29 by yasinbest        ###   ########.fr       */
+/*   Updated: 2022/01/07 17:43:56 by yasinbest        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -18,12 +18,12 @@ int main(int argc, char *argv[])
 	t_mapsize map;
 	t_data img;
 
-	tab = ft_parsemap(line);
+	tab = ft_parsemap(line, &img);
 	map = ft_setmap(tab);
 	printf("h  = %d and  l=%d \n", map.H, map.L);
 	
 	img.points = tab;
-
+	printf("number of collectibles at start : %d\n", img.remain);
 	ft_matrix(&img, map, tab);
 	mlx_key_hook(img.win, deal_key, &img);
 	mlx_loop(img.mlx);

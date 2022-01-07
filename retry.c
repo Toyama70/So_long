@@ -6,7 +6,7 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:46:19 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/06 15:12:23 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/07 17:42:20 by yasinbest        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -47,13 +47,14 @@ int	ft_readmap(t_mapsize *mapsize)
 
 }
 
-char **ft_parsemap(char *line) //will need argc argv
+char **ft_parsemap(char *line, t_data *img) //will need argc argv
 {
 	int		fd;
 	char	**tab;
 	t_mapsize map;
 	int i = 0;
-
+	
+	img->remain = 0;
 	map.H = ft_readmap(&map);
 	tab = calloc(map.H + 1, sizeof(char *));
 	while (i < map.H)
@@ -66,7 +67,7 @@ char **ft_parsemap(char *line) //will need argc argv
 
 	int k = 0;
 	int m = 0;
-
+	
 	while (i < map.H)
 	{
 		k = 0;
@@ -75,6 +76,8 @@ char **ft_parsemap(char *line) //will need argc argv
 		while (line[k] != 0 && line[k] != '\n')
 		{
 			tab[i][k] = line[k];
+			if (line[k] == 'C')
+				img->remain += 1;
 			k++;
 		}
 		free(line);
