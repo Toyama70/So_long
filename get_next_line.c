@@ -6,7 +6,7 @@
 /*   By: yasinbestrioui <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 10:35:42 by yasinbest         #+#    #+#             */
-/*   Updated: 2022/01/03 12:41:26 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/08 18:21:42 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -84,8 +84,11 @@ char	*chargebuff(int fd, char *buffer, int BUFFER_SIZE)
 		if (read_byte == -1)
 		{
 			free(tmp);
-			return (NULL);
+			printf("error");
+			exit(1);
 		}
+		
+		ft_contentinvalid(tmp);
 		tmp[read_byte] = 0;
 		buffer = ft_couple(buffer, tmp);
 		if (ft_strchr(tmp, '\n') != 0)
@@ -103,7 +106,10 @@ char	*get_next_line(int fd)
 
 	BUFFER_SIZE = 1;
 	if (fd < 0 || read(fd, 0, 0) < 0 || BUFFER_SIZE < 1)
-		return (NULL);
+	{
+		printf("error");
+		exit(1);
+	}
 	buffer = chargebuff(fd, buffer, BUFFER_SIZE);
 	if (!buffer)
 		return (NULL);

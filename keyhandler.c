@@ -6,11 +6,7 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 15:13:00 by ybestrio          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/01/07 17:57:35 by yasinbest        ###   ########.fr       */
-=======
-/*   Updated: 2022/01/06 21:49:14 by yasinbest        ###   ########.fr       */
->>>>>>> beabcb6408bff84074540da329dae104d85250d7
+/*   Updated: 2022/01/08 11:41:25 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -27,8 +23,7 @@ int		deal_key(int key, t_data *img)
 	if (key == 2)
 		move_right(img);
 	if (key == 53)
-		printf("ESC\n");
-
+		escape(img);
 	return (0);
 }
 
@@ -37,7 +32,6 @@ void	move_up(t_data *img)
 	if(ft_checkPos(1, img) == 1)
 		return ;
 
-<<<<<<< HEAD
 	mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, img->PosX * 64, img->PosY * 64);
 
 	if (img->points[img->PosY][img->PosX] == 'E')
@@ -46,16 +40,13 @@ void	move_up(t_data *img)
 	if (img->points[img->PosY][img->PosX] == 'C')
 		ft_collecting(img);
 
-=======
-	mlx_put_image_to_window(img->mlx, img->win, img->txtr.img, img->PosX * 64, img->PosY * 64);	
->>>>>>> beabcb6408bff84074540da329dae104d85250d7
 	img->PosY--;
 	mlx_put_image_to_window(img->mlx, img->win, img->her.img, img->PosX * 64, img->PosY * 64);
 
+	if (img->points[img->PosY][img->PosX] == 'E')
+		ft_is_exit(img);
 
-	printf("collectible status : %c\n",img->points[1][1]);
-
-	printf("amount of collectibles left : %d\n",img->remain);
+	ft_movecount(img);
 
 
 }
@@ -72,12 +63,14 @@ void	move_down(t_data *img)
 
 	if (img->points[img->PosY][img->PosX] == 'C')
 		ft_collecting(img);
-	//if actual square contains door, write door too, or write texture + door
 	
 	img->PosY++;
 	mlx_put_image_to_window(img->mlx, img->win, img->her.img, img->PosX * 64, img->PosY * 64);
 
+	if (img->points[img->PosY][img->PosX] == 'E')
+		ft_is_exit(img);
 	
+	ft_movecount(img);
 }
 
 void	move_left(t_data *img)
@@ -95,7 +88,10 @@ void	move_left(t_data *img)
 	img->PosX--;
 	mlx_put_image_to_window(img->mlx, img->win, img->her.img, img->PosX * 64, img->PosY * 64);
 
+	if (img->points[img->PosY][img->PosX] == 'E')
+		ft_is_exit(img);
 	
+	ft_movecount(img);
 }
 
 void	move_right(t_data *img)
@@ -113,5 +109,8 @@ void	move_right(t_data *img)
 	img->PosX++;
 	mlx_put_image_to_window(img->mlx, img->win, img->her.img, img->PosX * 64, img->PosY * 64);
 
+	if (img->points[img->PosY][img->PosX] == 'E')
+		ft_is_exit(img);
 	
+	ft_movecount(img);
 }

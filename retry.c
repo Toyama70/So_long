@@ -6,7 +6,7 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 10:46:19 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/01/07 17:42:20 by yasinbest        ###   ########.fr       */
+/*   Updated: 2022/01/08 14:44:12 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -21,7 +21,7 @@ void free_tab(char **tab)
 	free(tab);
 }
 
-int	ft_readmap(t_mapsize *mapsize)
+int	ft_readmap(t_mapsize *mapsize, char *str)
 {
 	int		counter;
 	int		fd;
@@ -30,7 +30,7 @@ int	ft_readmap(t_mapsize *mapsize)
 	counter = 0;
 	line = "dummy";
 //	ft_parse(argv[1]);
-	fd = open("testmap.ber", O_RDONLY);
+	fd = open(str, O_RDONLY);
 
 	while (line != 0)
 	{
@@ -47,7 +47,7 @@ int	ft_readmap(t_mapsize *mapsize)
 
 }
 
-char **ft_parsemap(char *line, t_data *img) //will need argc argv
+char **ft_parsemap(char *line, t_data *img, char *str) //will need argc argv
 {
 	int		fd;
 	char	**tab;
@@ -55,15 +55,15 @@ char **ft_parsemap(char *line, t_data *img) //will need argc argv
 	int i = 0;
 	
 	img->remain = 0;
-	map.H = ft_readmap(&map);
-	tab = calloc(map.H + 1, sizeof(char *));
+	map.H = ft_readmap(&map, str);
+	tab = ft_calloc(map.H + 1, sizeof(char *));
 	while (i < map.H)
 	{
-		tab[i] = calloc(map.L +1, 1);
+		tab[i] = ft_calloc(map.L +1, 1);
 		i++;
 	}
 	i = 0;
-	fd = open("testmap.ber", O_RDWR);
+	fd = open(str, O_RDWR);
 
 	int k = 0;
 	int m = 0;

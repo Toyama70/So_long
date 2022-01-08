@@ -6,11 +6,7 @@
 /*   By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/17 16:01:33 by ybestrio          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/01/07 17:43:27 by yasinbest        ###   ########.fr       */
-=======
-/*   Updated: 2022/01/06 21:51:44 by yasinbest        ###   ########.fr       */
->>>>>>> beabcb6408bff84074540da329dae104d85250d7
+/*   Updated: 2022/01/08 18:06:11 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef SO_LONG_H
@@ -102,11 +98,10 @@ typedef struct s_data {
 	int		endian;
 	int		PosX;
 	int		PosY;
-	int		moveCount;
-<<<<<<< HEAD
+	int		movecount;
 	int		remain;
-=======
->>>>>>> beabcb6408bff84074540da329dae104d85250d7
+	int		doorCount;
+	int		collCount;
 }			t_data;
 
 
@@ -115,19 +110,33 @@ typedef struct s_mapsize {
 	int	H;
 }	t_mapsize;
 
-int	ft_readmap(t_mapsize *mapsize);
-char **ft_parsemap(char *line, t_data *img);
+void	ft_errorhandler2(t_data *img, t_mapsize *map);
+char	**ft_parsemap(char *line, t_data *img, char *str);
 void	ft_printmap(char **tab);
 void	ft_img(t_data *img, t_hero *hero, char *file);
 void	ft_matrix(t_data *img, t_mapsize map, char **tab);
 void	*ft_calloc(size_t elementCount, size_t elementSize);
+void	ft_isber(char *str);
+void	ft_errorhandler1(int argc, char **argv);
+void	ft_emptyarg(char *str);
+void    ft_playernumber(t_data *img, t_mapsize *map);
+void    ft_checkprechar(char c);
 
-/* Checking winning conditions */
+/* Errors and Exceptions */
+void    ft_forbiddenchar(t_data *img, t_mapsize *map);
+void    ft_checkchar(char c, t_data *img);
+void    ft_checkmin(t_data *img, t_mapsize *map);
+void ft_limitmapsize(t_data *img, t_mapsize *map);
+void	ft_wallaround(t_data *img, t_mapsize *map);
+void	ft_wallaround2(t_data *img, t_mapsize *map);
+void	ft_wallexit(t_data *img);
+void	ft_contentinvalid(char *str);
+
+/* Checking winning or exit conditions */
 
 void	ft_is_exit(t_data *img);
 void	ft_collecting(t_data *img);
-
-
+void	escape(t_data *img);
 /* Movement and key handling */
 
 int     deal_key(int key, t_data *img);
@@ -135,7 +144,7 @@ void    move_up(t_data *img);
 void    move_left(t_data *img);
 void    move_right(t_data *img);
 void    move_down(t_data *img);
-
+void	ft_movecount(t_data *img);
 
 
 /* Check possible moves */
@@ -150,7 +159,7 @@ int		checkRight(t_data *img);
 /* Parsing map functions */
 
 t_mapsize	ft_setmap(char **tab);
-int	ft_readmap(t_mapsize *mapsize);
+int	ft_readmap(t_mapsize *mapsize, char *str);
 
 
 
