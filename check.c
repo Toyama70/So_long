@@ -6,84 +6,76 @@
 /*   By: yasinbestrioui <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 20:34:00 by yasinbest         #+#    #+#             */
-/*   Updated: 2022/01/06 21:52:36 by yasinbest        ###   ########.fr       */
+/*   Updated: 2022/01/10 13:33:22 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
 
-int		ft_checkPos(int direction, t_data *img)
+int	ft_checkpos(int direction, t_data *img)
 {
-
-/*1 is up, 2 is left, 3 is down, 4 is right*/
 	if (direction == 1)
-		if (checkUp(img) == 1)
-			return 1;
-
+		if (checkup(img) == 1)
+			return (1);
 	if (direction == 3)
-		if (checkDown(img) == 1)
-			return 1;
-
+		if (checkdown(img) == 1)
+			return (1);
 	if (direction == 2)
-		if (checkLeft(img) == 1)
-			return 1;
-
+		if (checkleft(img) == 1)
+			return (1);
 	if (direction == 4)
-		if (checkRight(img) == 1)
-			return 1;
-
-return 0;
-
+		if (checkright(img) == 1)
+			return (1);
+	return (0);
 }
 
-
-int		checkUp(t_data *img)
+int	checkup(t_data *img)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
-	x = img->PosX;
-	y = img->PosY;
-	if(img->points[y - 1][x] == '1')
-		return 1;
+	x = img->posx;
+	y = img->posy;
+	if (img->points[y - 1][x] == '1')
+		return (1);
 	else
-		return 0;
+		return (0);
 }
 
-int		checkDown(t_data *img)
+int	checkdown(t_data *img)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
-	x = img->PosX;
-	y = img->PosY;
-	if(img->points[y + 1][x] == '1')
-		return 1;
+	x = img->posx;
+	y = img->posy;
+	if (img->points[y + 1][x] == '1')
+		return (1);
 	else
-		return 0;
+		return (0);
 }
 
-int		checkLeft(t_data *img)
+int	checkleft(t_data *img)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
-	x = img->PosX;
-	y = img->PosY;
-	if(img->points[y][x - 1] == '1')
-		return 1;
+	x = img->posx;
+	y = img->posy;
+	if (img->points[y][x - 1] == '1')
+		return (1);
 	else
-		return 0;
+		return (0);
 }
 
-int		checkRight(t_data *img)
+int	checkright(t_data *img)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
-	x = img->PosX;
-	y = img->PosY;
-	if(img->points[y][x + 1] == '1')
-		return 1;
+	x = img->posx;
+	y = img->posy;
+	if (img->points[y][x + 1] == '1')
+		return (1);
 	else
-		return 0;
+		return (0);
 }

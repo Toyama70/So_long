@@ -6,7 +6,7 @@
 /*   By: yasinbestrioui <marvin@42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/01 14:56:06 by yasinbest         #+#    #+#             */
-/*   Updated: 2022/01/06 15:42:35 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/01/10 13:45:21 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "so_long.h"
@@ -16,15 +16,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-void	ft_storeimages(t_data *img, t_hero hero, t_txtr txtr, t_rock rock)
+void	ft_storeimages(t_data *img, t_comp hero, t_comp txtr, t_comp rock)
 {
 	img->her = hero;
 	img->txtr = txtr;
 	img->rock = rock;
 }
 
-void	ft_storeimages2(t_data *img, t_coll coll, t_door door)
+void	ft_storeimages2(t_data *img, t_comp coll, t_comp door)
 {
 	img->door = door;
 	img->coll = coll;
@@ -32,16 +31,14 @@ void	ft_storeimages2(t_data *img, t_coll coll, t_door door)
 
 void	ft_matrix(t_data *img, t_mapsize M, char **tab)
 {
-	t_hero hero;
-	t_txtr txtr;
-	t_rock rock;
-	t_coll coll;
-	t_door door;
-	img->mlx = mlx_init();
-	img->win = mlx_new_window(img->mlx, M.L * 64, M.H * 64, "So_long");
-		
-//	mlx_key_hook(img->win, deal_key, (void *)0); 
+	t_comp	hero;
+	t_comp	txtr;
+	t_comp	rock;
+	t_comp	coll;
+	t_comp	door;
 
+	img->mlx = mlx_init();
+	img->win = mlx_new_window(img->mlx, M.l * 64, M.h * 64, "So_long");
 	ft_fillhero(img, &hero, "rsrcs/hero.xpm");
 	ft_fillback(img, &txtr, "rsrcs/ground.xpm");
 	ft_fillrock(img, &rock, "rsrcs/rock.xpm");
@@ -50,7 +47,4 @@ void	ft_matrix(t_data *img, t_mapsize M, char **tab)
 	ft_storeimages(img, hero, txtr, rock);
 	ft_storeimages2(img, coll, door);
 	ft_renderer(img, M, tab);
-	
-//	mlx_loop(img->mlx);
-
 }

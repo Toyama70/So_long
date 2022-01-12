@@ -6,12 +6,14 @@
 #    By: ybestrio <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 17:03:43 by ybestrio          #+#    #+#              #
-#    Updated: 2022/01/01 12:08:40 by yasinbest        ###   ########.fr        #
+#    Updated: 2022/01/10 10:51:10 by ybestrio         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 NAME1 = So_long
 
-SRCS1 =  Hello.c
+SRCS1 = thirderror.c seconderror.c error.c conditions.c check.c\
+		keyhandler.c main.c retry.c get_next_line_utils.c get_next_line.c\
+		so_long.c render.c datafiller.c\
 
 OBJS1 = $(SRCS1:.c=.o)
 
@@ -24,7 +26,7 @@ RM		= rm -f
 CFLAGS = -Wall -Wextra -Werror
 
 $(NAME1): $(OBJS1)
-	$(CC) $(OBJS1) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(OBJS1) -lmlx -framework OpenGL -framework AppKit -o $(NAME1)
 
 all:	$(NAME1)
 
